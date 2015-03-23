@@ -1,6 +1,6 @@
 from node:0.8.28
 maintainer Nick Stinemates
-run sudo npm install -g npm
+run npm install -g npm
 add . /airfield
 run cd /airfield && npm install
 
