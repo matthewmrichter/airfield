@@ -4,7 +4,12 @@
  * Module dependencies.
  */
 
+var defaults = require('deep-defaults')
+  , expand   = require('flatten.js').expand;
+
+var clone = function (o) { JSON.parse(JSON.stringify(o)); };
 var settings = require(process.env.NODE_CONFIG || './settings').settings;
+settings = defaults(expand(clone(process.env), '__'), settings);
 
 var express = require('express')
   , RedisStore = require('connect-redis')(express.session)
@@ -33,8 +38,8 @@ app.configure(function(){
   app.set('view engine', 'html');
   swig.init({
 	root: __dirname + '/views',
-	allowError: true	
-  }); 
+	allowError: true
+  });
 // app.set('view options', layout: false);
   app.use(express.favicon());
   app.use(express.logger('dev'));
@@ -104,7 +109,7 @@ app.get('/ajax/routes', checkAuth, function(req, res){
 			}
 			//console.log(routelist);
 			res.send(routelist);
-		});		
+		});
 	});
 });
 
@@ -171,8 +176,8 @@ app.get('/ajax/getInstances', checkAuth, function(req, res){
 			}, function(err){
 				res.send(instances);
 			});
-			
-		});	
+
+		});
 	});
 });
 
