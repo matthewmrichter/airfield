@@ -7,7 +7,7 @@
 var defaults = require('deep-defaults')
   , expand   = require('flatten.js').expand;
 
-var clone = function (o) { JSON.parse(JSON.stringify(o)); };
+var clone = function (o) { return JSON.parse(JSON.stringify(o)); };
 var settings = require(process.env.NODE_CONFIG || './settings').settings;
 settings = defaults(expand(clone(process.env), '__'), settings);
 
